@@ -15,8 +15,8 @@ import { defaultValues, mapElementsLimit } from '../config';
 import { getQuakeCoordinates } from '../utilities';
 
 const API_KEY = '785f2ef6-32e3-4cd2-8ecb-c3e3b0a29066';
-const mapTileUrl = `https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=${API_KEY}`;
-// const mapTileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+// const mapTileUrl = `https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=${API_KEY}`;
+const mapTileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 function MapPlaceholder() {
   return (

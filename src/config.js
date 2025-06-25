@@ -1,6 +1,11 @@
 export const magnitudes = ['significant', '4.5', '2.5', '1.0', 'all'];
 export const periods = ['hour', 'day', 'week', 'month'];
-export const sortBy = ['magnitude', 'significance', 'depth'];
+export const sortBy = [
+  'greatest magnitude',
+  'newest first',
+  'greatest significance',
+  'shallowest depth',
+];
 export const mapElementsLimit = 750;
 export const defaultValues = {
   country: {
@@ -12,10 +17,9 @@ export const defaultValues = {
   magnitude: '4.5',
   period: 'day',
   mapOptions: {
-    zoom: 5,
-    maxZoom: 18,
-    minZoom: 3,
-    scrollWheelZoom: false,
+    zoom: 6,
+    maxZoom: 12,
+    minZoom: 4,
   },
 };
 

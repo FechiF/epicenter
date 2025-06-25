@@ -5,10 +5,6 @@ export function Main({ children }) {
   return <div className="main">{children}</div>;
 }
 
-export function NavBar({ children }) {
-  return <nav className="nav-bar">{children}</nav>;
-}
-
 export function Box({ children }) {
   const [isOpen1, setIsOpen1] = useState(true);
   return (
@@ -30,13 +26,5 @@ export function Logo() {
       <img src={logo} alt="Epicenter logo" />
       <h1 className="hidden">Epicenter</h1>
     </div>
-  );
-}
-
-export function SearchResults({ movies }) {
-  return (
-    <p className="num-results">
-      Found <strong>{movies.length}</strong> results
-    </p>
   );
 }

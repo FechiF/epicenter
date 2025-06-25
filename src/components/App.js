@@ -22,6 +22,7 @@ export default function App() {
     defaultValues.country.latitude,
     defaultValues.country.longitude,
   ]);
+  const [page, setPage] = useState(1);
 
   function handleCountryChange(country) {
     setMapCenter([country.latitude, country.longitude]);
@@ -29,6 +30,16 @@ export default function App() {
 
   function handleClickQuake(quake) {
     setMapCenter(getQuakeCoordinates(quake));
+  }
+
+  function handleSelectPeriod(period) {
+    setPeriod(period);
+    setPage(1);
+  }
+
+  function handleSelectMagnitude(magnitude) {
+    setMagnitude(magnitude);
+    setPage(1);
   }
 
   useEffect(
@@ -65,8 +76,11 @@ export default function App() {
 
           <form className="form">
             <CountryList onChange={handleCountryChange} />
-            <MagnitudeList magnitude={magnitude} onChange={setMagnitude} />
-            <PeriodList period={period} onChange={setPeriod} />
+            <MagnitudeList
+              magnitude={magnitude}
+              onChange={handleSelectMagnitude}
+            />
+            <PeriodList period={period} onChange={handleSelectPeriod} />
             <SortBy onChange={setSortProp} />
           </form>
 
@@ -80,6 +94,8 @@ export default function App() {
             quakes={quakes}
             onSelect={handleClickQuake}
             sortProp={sortProp}
+            page={page}
+            setPage={setPage}
           />
         </div>
 

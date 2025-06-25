@@ -4,8 +4,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LabelImportantOutlinedIcon from '@mui/icons-material/LabelImportantOutlined';
 import Pagination from '@mui/material/Pagination';
 
-export function QuakeList({ quakes, onSelect, sortProp }) {
-  const [page, setPage] = useState(1);
+export function QuakeList({ quakes, onSelect, sortProp, setPage, page }) {
   const itemsPerPage = 10; // Number of items to display per page
 
   // Calculate the items to display on the current page
@@ -14,27 +13,26 @@ export function QuakeList({ quakes, onSelect, sortProp }) {
   const sortedQuakes = getSortedQuakes();
   const currentItems = sortedQuakes.slice(startIndex, endIndex);
 
-  const handleChange = (event, value) => {
+  function handleChange(event, value) {
     setPage(value);
-  };
+  }
 
   function getSortedQuakes() {
     switch (sortProp) {
-      case 'significance':
+      case 'newest first':
+        return quakes.toSorted((a, b) => b.properties.time - a.properties.time);
+
+      case 'greatest significance':
         return quakes.toSorted((a, b) => b.properties.sig - a.properties.sig);
 
-      case 'depth':
+      case 'shallowest depth':
         return quakes.toSorted(
-          (a, b) => b.geometry.coordinates[2] - a.geometry.coordinates[2]
+          (a, b) => a.geometry.coordinates[2] - b.geometry.coordinates[2]
         );
 
       default:
         return quakes.toSorted((a, b) => b.properties.mag - a.properties.mag);
     }
-
-    return quakes.toSorted(
-      (a, b) => b.properties[sortProp] - a.properties[sortProp]
-    );
   }
 
   return (

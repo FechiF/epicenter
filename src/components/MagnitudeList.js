@@ -21,5 +21,9 @@ export function MagnitudeList({ onChange, magnitude }) {
 }
 
 export function Magnitude({ magnitude }) {
-  return <option value={magnitude}>{magnitude}</option>;
+  return (
+    <option value={magnitude}>
+      {magnitude} {magnitude.includes('.') ? ' and above' : ''}
+    </option>
+  );
 }
