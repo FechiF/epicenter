@@ -1,13 +1,348 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+  --color-brand--2: #e05e59;
+
+  --color-yellow: #ffb545;
+  --color-orange: #ffb545;
+  --color-green: #00c46a;
+  --color-red: #e05e59;
+
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: rgb(214, 222, 224);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-light--2);
+  font-weight: 400;
+  line-height: 1.6;
+  height: 100vh;
+  overscroll-behavior-y: none;
+
+  background-color: var(--color-dark--1);
+  padding: 2.5rem;
+}
+
+/* GENERAL */
+a:link,
+a:visited {
+  color: var(--color-brand--1);
+}
+
+.main {
+  display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex-basis: 50rem;
+  background-color: var(--color-dark--1);
+  padding: 0 5rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 9rem;
+  align-self: center;
+  margin-bottom: 2rem;
+}
+.logo img {
+  height: 100%;
+}
+
+.list__controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.list__controls > div {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-light--2);
+  padding: 5px 0;
+}
+
+.quakes {
+  list-style: none;
+  height: calc(100vh - 42rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.quakes::-webkit-scrollbar {
+  width: 0;
+}
+
+.quake {
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.25rem;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+  display: flex;
+}
+.quake--running {
+  border-left: 5px solid var(--color-brand--2);
+}
+.quake--cycling {
+  border-left: 5px solid var(--color-brand--1);
+}
+
+.quake__title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-right: 2rem;
+}
+.quake__date {
+  font-size: 1.3rem;
+}
+.quake__details {
+  font-size: 1.6rem;
+  align-items: baseline;
+}
+
+.quake__icon {
+  font-size: 1.8rem;
+  margin-right: 0.2rem;
+  height: 0.28rem;
+}
+
+.quake__value {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.quake__unit {
+  font-size: 1.1rem;
+  color: var(--color-light--1);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.form {
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.75rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 2.5rem;
+  transition: all 0.5s, transform 1ms;
+}
+
+.form.hidden,
+.quake.hidden {
+  transform: translateY(-30rem);
+  height: 0;
+  padding: 0 2.25rem;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: center;
+}
+
+.form__row--hidden {
+  display: none;
+}
+
+.form__label {
+  flex: 0 0 50%;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.3rem 1.1rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+  transition: all 0.2s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.form__btn {
+  display: none;
+}
+
+.copyright {
+  margin-top: auto;
+  font-size: 1.3rem;
+  text-align: center;
+  color: var(--color-light--1);
+}
+
+.twitter-link:link,
+.twitter-link:visited {
+  color: var(--color-light--1);
+  transition: all 0.2s;
+}
+
+.twitter-link:hover,
+.twitter-link:active {
+  color: var(--color-light--2);
+}
+
+/* MAP */
+.map {
+  flex: 1;
+  height: calc(100vh - 5rem);
+  background-color: var(--color-light--1);
+}
+.leaflet-container {
+  height: 100%;
+}
+
+/*Tooltip */
+
+.leaflet-tooltip-pane .leaflet-tooltip {
+  background-color: var(--color-dark--1);
+  border-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+  font-size: 1.5rem;
+  opacity: 1;
+}
+.leaflet-tooltip-pane .leaflet-tooltip:before {
+  border: 6px solid transparent;
+  background: transparent;
+}
+
+.leaflet-tooltip-bottom.leaflet-tooltip:before {
+  border-left-color: var(--color-dark--1);
+}
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--2);
+}
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: 5px solid var(--color-brand--1);
+}
+
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
+  border: none;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+/* -------------------------- */
+/* CLASSES TO MAKE MODAL WORK */
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  opacity: 1;
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+.hidden {
+  /* display: none; */
+  z-index: -1;
+  opacity: 0;
+}
+
+/* Pagination override */
+.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root {
+  color: var(--color-light--2) !important;
+}
+
+.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: var(--color-brand--1) !important;
+  color: #000 !important;
+}
+
+/* Material icons */
+.css-1umw9bq-MuiSvgIcon-root {
+  fill: var(--color-brand--1) !important;
+}
+
+.summary {
+  color: var(--color-brand--1);
 }
