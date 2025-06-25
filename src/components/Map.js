@@ -14,7 +14,9 @@ import { Icon } from 'leaflet';
 import { defaultValues, mapElementsLimit } from '../config';
 import { getQuakeCoordinates } from '../utilities';
 
-const API_KEY = '';
+const API_KEY = '785f2ef6-32e3-4cd2-8ecb-c3e3b0a29066';
+const mapTileUrl = `https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=${API_KEY}`;
+// const mapTileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 function MapPlaceholder() {
   return (
@@ -102,7 +104,7 @@ export default function Map({ quakes, mapCenter }) {
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        url={mapTileUrl}
       />
 
       <Markers quakes={quakes} center={mapCenter} />

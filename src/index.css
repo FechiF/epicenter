@@ -61,9 +61,12 @@ a:visited {
   height: 9rem;
   align-self: center;
   margin-bottom: 2rem;
+  width: 100%;
 }
 .logo img {
   height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .list__controls {
@@ -80,7 +83,8 @@ a:visited {
 
 .quakes {
   list-style: none;
-  height: calc(100vh - 42rem);
+  height: calc(100vh - 35rem);
+  margin-bottom: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -132,6 +136,8 @@ a:visited {
   font-size: 1.1rem;
   color: var(--color-light--1);
   text-transform: uppercase;
+}
+.quake__main .quake__unit {
   font-weight: 800;
 }
 
@@ -140,9 +146,10 @@ a:visited {
   border-radius: 5px;
   padding: 1.5rem 2.75rem;
   margin-bottom: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2.5rem;
+  height: 9.25rem;
   transition: all 0.5s, transform 1ms;
 }
 
@@ -328,6 +335,6 @@ p {
   opacity: 0;
 }
 
-.summary {
+.summary .quake__unit {
   color: var(--color-brand--1);
 }

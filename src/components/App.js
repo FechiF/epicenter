@@ -71,7 +71,9 @@ export default function App() {
           </form>
 
           <div className="summary">
-            <p>Total quakes: {quakes.length.toLocaleString()}</p>
+            <p className="quake__unit">
+              Total quakes: {quakes.length.toLocaleString()}
+            </p>
           </div>
 
           <QuakeList

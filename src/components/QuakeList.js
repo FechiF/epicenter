@@ -58,11 +58,16 @@ export function Quake({ quake, onSelect }) {
   return (
     <li
       className="quake"
+      style={{
+        borderLeft: `5px solid var(--color-${
+          quake.properties.alert ? quake.properties.alert : 'light--1'
+        })`,
+      }}
       onClick={() => {
         onSelect(quake);
       }}
     >
-      <div>
+      <div className="quake__main">
         <div
           className="quake__title"
           style={{
@@ -78,16 +83,16 @@ export function Quake({ quake, onSelect }) {
         </span>
       </div>
       <div>
-        <em className="quake__date">
+        <p className="quake__unit">
           <CalendarMonthOutlinedIcon />{' '}
           {new Date(quake.properties.time).toLocaleString()}
-        </em>
+        </p>
         <p className="quake__details">
           <LocationOnOutlinedIcon /> {quake.properties.place}
         </p>
-        <em>
+        <p className="quake__unit">
           <LabelImportantOutlinedIcon /> Significance: {quake.properties.sig}
-        </em>
+        </p>
       </div>
     </li>
   );

@@ -1,6 +1,6 @@
 {
   "short_name": "Epicenter",
-  "name": "Epicenter",
+  "name": "Epicenter - Real-time Worldwide Earthquake Monitoring",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,8 +13,8 @@
       "sizes": "192x192"
     },
     {
-      "src": "epicenter_logo_small.jpg",
-      "type": "image/jpg",
+      "src": "epicenter_logo_big.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
