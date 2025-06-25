@@ -328,21 +328,6 @@ p {
   opacity: 0;
 }
 
-/* Pagination override */
-.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root {
-  color: var(--color-light--2) !important;
-}
-
-.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
-  background-color: var(--color-brand--1) !important;
-  color: #000 !important;
-}
-
-/* Material icons */
-.css-1umw9bq-MuiSvgIcon-root {
-  fill: var(--color-brand--1) !important;
-}
-
 .summary {
   color: var(--color-brand--1);
 }
