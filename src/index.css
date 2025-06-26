@@ -194,7 +194,7 @@ a:visited {
 
 /* MAP */
 .map {
-  height: 100vh;
+  height: calc(100vh - 5rem);
   background-color: var(--color-light--1);
 }
 .leaflet-container {
@@ -336,7 +336,6 @@ p {
 
   .map {
     flex: 1;
-    height: calc(100vh - 5rem);
   }
 
   .quakes {
