@@ -331,7 +331,7 @@ p {
   color: var(--color-brand--1);
 }
 
-@media min-width(768px) {
+@media (min-width: 768px) {
   .main {
     display: flex;
   }
