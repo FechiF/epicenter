@@ -17,7 +17,7 @@ export const defaultValues = {
   magnitude: '4.5',
   period: 'day',
   mapOptions: {
-    zoom: 6,
+    zoom: 5,
     maxZoom: 12,
     minZoom: 4,
   },
