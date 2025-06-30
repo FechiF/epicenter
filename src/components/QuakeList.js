@@ -86,9 +86,11 @@ export function Quake({ quake, onSelect }) {
           {new Date(quake.properties.time).toLocaleString()}
         </p>
         <p className="quake__details">
-          <LocationOnOutlinedIcon /> {quake.properties.place}
+          <LocationOnOutlinedIcon />{' '}
+          {quake.properties.place[0].toUpperCase() +
+            quake.properties.place.slice(1)}
         </p>
-        <p className="quake__unit">
+        <p className="quake__unit sig">
           <LabelImportantOutlinedIcon /> Significance: {quake.properties.sig}
         </p>
       </div>

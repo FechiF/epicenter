@@ -13,6 +13,9 @@ import markerIconPng from 'leaflet/dist/images/marker-icon.png';
 import { Icon } from 'leaflet';
 import { defaultValues, mapElementsLimit } from '../config';
 import { getQuakeCoordinates } from '../utilities';
+import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import LabelImportantOutlinedIcon from '@mui/icons-material/LabelImportantOutlined';
 
 const API_KEY = '785f2ef6-32e3-4cd2-8ecb-c3e3b0a29066';
 // const mapTileUrl = `https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=${API_KEY}`;
@@ -66,7 +69,11 @@ function Markers({ quakes }) {
           radius={getQuakeRadius(quake)}
           key={quake.id}
         >
-          <Tooltip>{quake.properties.title}</Tooltip>
+          <Tooltip>
+            {quake.properties.mag}M &nbsp;
+            {quake.properties.place[0].toUpperCase() +
+              quake.properties.place.slice(1)}
+          </Tooltip>
         </Circle>
       ))}
 
@@ -77,7 +84,38 @@ function Markers({ quakes }) {
             icon={getIcon()}
             key={quake.id}
           >
-            <Popup>{quake.properties.title}</Popup>
+            <Popup>
+              <div className="quake__main">
+                <div
+                  className="quake__title"
+                  style={{
+                    color: quake.properties.alert
+                      ? `var(--color-${quake.properties.alert})`
+                      : '',
+                  }}
+                >
+                  {quake.properties.mag.toFixed(1)}
+                </div>
+                <span className="quake__unit">
+                  {quake.geometry.coordinates[2].toFixed(1)}m
+                </span>
+              </div>
+              <div>
+                <p className="quake__unit">
+                  <CalendarMonthOutlinedIcon />{' '}
+                  {new Date(quake.properties.time).toLocaleString()}
+                </p>
+                <p className="quake__details">
+                  <LocationOnOutlinedIcon />{' '}
+                  {quake.properties.place[0].toUpperCase() +
+                    quake.properties.place.slice(1)}
+                </p>
+                <p className="quake__unit sig">
+                  <LabelImportantOutlinedIcon /> Significance:{' '}
+                  {quake.properties.sig}
+                </p>
+              </div>
+            </Popup>
           </Marker>
         ))}
     </>

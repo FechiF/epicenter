@@ -11,6 +11,7 @@ import { getQuakeCoordinates } from '../utilities.js';
 
 import Map from './Map.js';
 import 'leaflet/dist/leaflet.css';
+import { useLocalStorageState } from '../hooks/useLocalStorageState.js';
 
 export default function App() {
   const [magnitude, setMagnitude] = useState(defaultValues.magnitude);
