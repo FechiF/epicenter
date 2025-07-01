@@ -8,7 +8,7 @@ export function SortBy({ onChange }) {
       </label>
       <select
         className="form__input form__input--type select-sort"
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value, 'sortProp')}
         name="select-sort"
       >
         {sortBy?.map((option) => (

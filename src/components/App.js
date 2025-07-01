@@ -14,32 +14,38 @@ import 'leaflet/dist/leaflet.css';
 import { useLocalStorageState } from '../hooks/useLocalStorageState.js';
 
 export default function App() {
-  const [magnitude, setMagnitude] = useState(defaultValues.magnitude);
-  const [period, setPeriod] = useState(defaultValues.period);
+  const [magnitude, setMagnitude] = useLocalStorageState(
+    defaultValues.magnitude,
+    'magnitude'
+  );
+  const [period, setPeriod] = useLocalStorageState(
+    defaultValues.period,
+    'period'
+  );
   const [isLoading, setIsLoading] = useState(false);
-  const [sortProp, setSortProp] = useState('magnitude');
-  const [quakes, setQuakes] = useState([]);
-  const [mapCenter, setMapCenter] = useState([
-    defaultValues.country.latitude,
-    defaultValues.country.longitude,
-  ]);
+  const [sortProp, setSortProp] = useLocalStorageState('magnitude', 'sortProp');
+  const [quakes, setQuakes] = useLocalStorageState([], 'quakes');
+  const [mapCenter, setMapCenter] = useLocalStorageState(
+    [defaultValues.country.latitude, defaultValues.country.longitude],
+    'mapCenter'
+  );
   const [page, setPage] = useState(1);
 
   function handleCountryChange(country) {
-    setMapCenter([country.latitude, country.longitude]);
+    setMapCenter([country.latitude, country.longitude], 'mapCenter');
   }
 
   function handleClickQuake(quake) {
-    setMapCenter(getQuakeCoordinates(quake));
+    setMapCenter(getQuakeCoordinates(quake), 'mapCenter');
   }
 
   function handleSelectPeriod(period) {
-    setPeriod(period);
+    setPeriod(period, 'period');
     setPage(1);
   }
 
   function handleSelectMagnitude(magnitude) {
-    setMagnitude(magnitude);
+    setMagnitude(magnitude, 'magnitude');
     setPage(1);
   }
 
